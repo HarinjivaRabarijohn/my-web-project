@@ -1,0 +1,148 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ClientDashboard.master.cs" Inherits="RentalCar2025.ClientMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <title>Client Dashboard</title>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f4;
+            color: #000;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        body.dark-theme {
+            background: #121212;
+            color: #eee;
+        }
+
+        header {
+            background-color: #8B0000;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        header img {
+            height: 50px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        /* Theme toggle button */
+        #btnToggleTheme {
+            background-color: #fff;
+            border: none;
+            color: #8B0000;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #btnToggleTheme:hover {
+            background-color: #ddd;
+        }
+        /* Dark theme button style */
+        body.dark-theme #btnToggleTheme {
+            background-color: #444;
+            color: #eee;
+        }
+        body.dark-theme #btnToggleTheme:hover {
+            background-color: #555;
+        }
+
+        nav {
+            background-color: #a52a2a;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #8B0000;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+            border-radius: 8px;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        body.dark-theme .container {
+            background-color: #1e1e1e;
+            color: #ddd;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f1f1f1;
+            color: #666;
+            font-size: 14px;
+            margin-top: 30px;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        body.dark-theme footer {
+            background-color: #222;
+            color: #aaa;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server" />
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('dark-theme');
+            // Save preference in sessionStorage
+            if(body.classList.contains('dark-theme')) {
+                sessionStorage.setItem('theme', 'dark');
+            } else {
+                sessionStorage.setItem('theme', 'light');
+            }
+        }
+       
+        window.onload = function() {
+            const savedTheme = sessionStorage.getItem('theme');
+            if(savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+            }
+        };
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <img src="images/images2.png" alt="Car Rental Logo" />
+            <h1>Welcome, <%: Session["Username"] %></h1>
+            <button type="button" id="btnToggleTheme" onclick="toggleTheme()">Light</button>
+        </header>
+        <nav>
+            <a href="ClientDashboard.aspx">Home</a>
+            <a href="AdvancedSearch.aspx">Advanced Search</a>
+            <a href="ViewVehicles.aspx">View Vehicles</a>
+            <a href="Cart.aspx">My Cart</a>
+            <a href="Booking.aspx">My Bookings</a>
+            <a href="Feedback.aspx">Feedback</a>
+            <a href="EditProfile.aspx">Edit Profile</a>
+            <a href="Payment.aspx">Payments</a> 
+            <a href="Logout.aspx">Logout</a>
+        </nav>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+        </div>
+        <footer>&copy; 2025 InstantCar Rental. All rights reserved.</footer>
+    </form>
+</body>
+</html>

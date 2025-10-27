@@ -1,0 +1,131 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminDashboard.Master.cs" Inherits="RentalCar2025.AdminMaster" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard</title>
+    <style>
+        body { 
+            margin:0;
+            font-family:'Segoe UI',sans-serif; 
+            background:#f8f9fa; color:#333; 
+        }
+        header { 
+            background:#2a2d34; 
+            padding:20px 40px; 
+            box-shadow:0 4px 8px rgba(0,0,0,0.1); 
+        }
+        header h1 { 
+            margin:0; 
+            color:#f8f9fa; 
+            font-size:24px; 
+            font-weight:700; 
+        }
+        nav { 
+            background:#3a3f4b; 
+            display:flex; 
+            flex-wrap:wrap;
+            justify-content:center;
+            padding:10px; 
+        }
+        nav a { 
+            color:#cbd5e0; 
+            margin:0 6px; 
+            padding:12px 24px; 
+            text-decoration:none; 
+            font-weight:600; 
+            border-radius:6px;
+            transition:background 0.3s;
+        }
+        nav a:hover { 
+            background:#556080; 
+            color:#e2e8f0; 
+        }
+        .container { 
+            padding:40px; 
+            margin:30px auto; 
+            max-width:1200px; 
+            background:#fff; 
+            box-shadow:0 8px 20px rgba(0,0,0,0.12); 
+            border-radius:12px; 
+        }
+        footer {
+            text-align:center; 
+            padding:20px; 
+            background:#f1f3f5; 
+            color:#6c757d;
+            margin-top:40px; 
+            font-size:14px; 
+        }
+        label.counts { 
+            padding:20px 30px;
+            border-radius:20px;
+            background:#dbe9ff; 
+            color:#1a3c72; 
+            font-weight:700; 
+            margin-right:20px; 
+        }
+        .action-btn { 
+            padding:6px 12px; 
+            margin:2px; 
+            color:white; 
+            border:none;
+            border-radius:5px; 
+            cursor:pointer; 
+            transition:background 0.3s;
+        }
+        .block-btn { 
+            background:#c0392b;
+        }
+        .unblock-btn {
+            background:#27ae60; 
+        }
+        .edit-btn { 
+            background:#2980b9; 
+        }
+        .action-btn:hover {
+            opacity:0.9; 
+        }
+        table {
+            width:100%; 
+            border-collapse:collapse;
+            margin-top:20px; 
+        }
+        th,td {
+            border:1px solid #ccc; 
+            padding:10px; 
+            text-align:center; 
+        }
+        th { 
+            background:#f2943e; 
+            color:white; 
+        }
+        tr:nth-child(even){ 
+            background:#f8f9fa;
+        }
+        tr:hover{ 
+            background:#e9ecef;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="Head" runat="server" />
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <header><h1>Welcome, <%: Session["Username"] ?? "Guest" %></h1></header>
+
+        <nav>
+            <a href="AdminDashboard.aspx">Dashboard</a>
+            <a href="EditProfilAdmin.aspx">Accounts</a>
+            <a href="BookingsFeedback.aspx">Bookings & Feedback</a>
+            <a href="Vehicles.aspx">Manage Vehicles</a>
+            <a href="RegisterOtherAdmin.aspx">Register Admin</a>
+            <a href="Logout.aspx">Logout</a>
+        </nav>
+        <div class="container">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+        </div>
+        <footer>&copy; 2025 InstantCar Rental</footer>
+    </form>
+</body>
+</html>
+
